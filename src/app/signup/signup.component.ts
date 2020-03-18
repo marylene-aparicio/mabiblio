@@ -15,10 +15,12 @@ export class SignupComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
+  // Initiation du formulaire
   ngOnInit() {
     this.initForm();
   }
 
+  // Creation du formulaire avec des champs requis
   initForm() {
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -26,13 +28,16 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  // Gestion de la soumission du formulaire
   onSubmit() {
     const email = this.signUpForm.get('email').value;
     const password = this.signUpForm.get('password').value;
+    // Si tout se passe bien redirection
     this.authService.createNewUser(email, password).then(
       () => {
         this.router.navigate(['/books']);
       },
+      // Sinon affichage du message d'erreur retourné par Firebase
       (error) => {
         this.errorMessage = error;
       }

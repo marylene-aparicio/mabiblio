@@ -13,6 +13,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  // Observe l'état de l'authentification de l'utilisateur
+  // A chaque changement d'état, la fonction passée en argument est executée
+  // Si l'utilisateur est bien authentifié, onAuthStateChanged() recoit l'objet de type firebase.User correspondant à l'utilisateur
   ngOnInit() {
     firebase.auth().onAuthStateChanged(
       (user) => {
@@ -25,6 +28,7 @@ export class HeaderComponent implements OnInit {
     )
   }
 
+  // Déconnection
   onSignOut() {
     this.authService.signOutUser();
   }

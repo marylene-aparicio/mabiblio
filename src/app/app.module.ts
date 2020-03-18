@@ -23,7 +23,9 @@ const appRoutes: Routes = [
   { path: 'books', canActivate:[AuthGuardService], component: BookListComponent },
   { path: 'books/new', canActivate:[AuthGuardService], component: BookFormComponent },
   { path: 'books/view/:id',canActivate:[AuthGuardService], component: SingleBookComponent },
+  // Rajouter une redirection en cas de route vide
   { path: '', redirectTo: 'books', pathMatch: 'full' },
+    // Rajouter une redirection en cas de route indéterminée
   { path: '**', redirectTo: 'books' }
 ];
 

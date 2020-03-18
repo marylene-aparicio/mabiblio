@@ -1,7 +1,11 @@
 export class Book {
+    // Facultatif
     photo: string;
-    constructor (
-        public title: string, 
+    // synopsis: string;
+
+    // Obligatoire
+    constructor(
+        public title: string,
         public author: string
     ) {}
 }

@@ -14,11 +14,13 @@ export class SigninComponent implements OnInit {
   errorMessage: string;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
-
+  
+  // Initiation du formulaire
   ngOnInit() {
     this.initForm();
   }
 
+  // Creation du formulaire avec des champs requis
   initForm() {
     this.signInForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -26,13 +28,16 @@ export class SigninComponent implements OnInit {
     });
   }
 
+  // Gestion de la soumission du formulaire
   onSubmit() {
     const email = this.signInForm.get('email').value;
     const password = this.signInForm.get('password').value;
+    // Si tout se passe bien redirection
     this.authService.signInUser(email, password).then(
       () => {
         this.router.navigate(['/books']);
       },
+      // Sinon affichage du message d'erreur retourné par Firebase
       (error) => {
         this.errorMessage = error;
       }
